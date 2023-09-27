@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.StringTokenizer;
 public class Solution {
 
 	public static void main(String[] args) throws Exception {
+		//System.setIn(new FileInputStream(Solution.class.getResource("./sample_input.txt").getFile()));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int T = Integer.parseInt(br.readLine());
@@ -26,7 +28,7 @@ public class Solution {
 			List<Integer> list = new ArrayList<Integer>();
 			list.add(arr[0]);
 			
-			for (int i = 0; i < N; i++) {
+			for (int i = 1; i < N; i++) {
 				if (arr[i] >= list.get(list.size()-1))
 					list.add(arr[i]);
 				else {
@@ -42,14 +44,14 @@ public class Solution {
 
 	static int bs(List<Integer> list, int n) {
 		int lb = 0;
-		int ub = list.size()-1;
+		int ub = list.size();
 		
-		while (ub-lb > 1) {
+		while (ub>lb) {
 
 			int mid = (lb+ub)/2;
 			
 			if (n >= list.get(mid)) {
-				lb = mid;
+				lb = mid+1;
 			} else {
 				ub = mid;
 			}
